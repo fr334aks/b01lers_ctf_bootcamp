@@ -65,12 +65,11 @@ of the binary since `PIE` is enabled.
 
 ## Exploit Overview
 
-We have `leak_canary_function` that runs four times. The first one wasnt of much help. I used the second `leak_stack_canary` to leak an address
+We have `leak_canary_function` that runs four times. I used the second `leak_stack_canary` to leak an address
 from the stack that turned out to be `_start`. With this we can get the base address of the binary.
 I used the second to leak the `stack_canary` and the third to control `RIP`.
 
-Using `ROP` we can now leak the `libc_address`since we have `RIP` controlled and since `libc` is already provided, we then find the address of `system` and `/bin/sh`.and 
-therefore we can now spawn a shell =). The final exploit [exploit.py](exploit.py)
+Using `ROP` we can now leak the `libc_address`since we have `RIP` controlled and since `libc` is already provided, we then find the address of `system` and `/bin/sh`.and therefore we can now spawn a shell =). The final exploit [exploit.py](exploit.py)
 
 ## Flag
 
